@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 04 - Cadastro de Atendimento</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <style>
+        :root {
+            --c-main: #1b7f79;
+            --c-main-dark: #14625d;
+            --c-accent: #e07a3f;
+            --c-accent-dark: #bf6329;
+        }
+        body { background-color: #edf5f3; }
+        .text-brand { color: var(--c-main) !important; }
+        .text-accent { color: var(--c-accent) !important; }
+        .border-brand { border-color: var(--c-accent) !important; }
+        .bg-brand { background-color: var(--c-main) !important; color: #fff; }
+        .btn-brand {
+            --bs-btn-color: #fff;
+            --bs-btn-bg: var(--c-main);
+            --bs-btn-border-color: var(--c-main);
+            --bs-btn-hover-color: #fff;
+            --bs-btn-hover-bg: var(--c-main-dark);
+            --bs-btn-hover-border-color: var(--c-main-dark);
+            --bs-btn-active-color: #fff;
+            --bs-btn-active-bg: var(--c-main-dark);
+            --bs-btn-active-border-color: var(--c-main-dark);
+        }
+        .btn-outline-brand {
+            --bs-btn-color: var(--c-main);
+            --bs-btn-border-color: var(--c-main);
+            --bs-btn-hover-color: #fff;
+            --bs-btn-hover-bg: var(--c-main);
+            --bs-btn-hover-border-color: var(--c-main);
+            --bs-btn-active-color: #fff;
+            --bs-btn-active-bg: var(--c-main-dark);
+            --bs-btn-active-border-color: var(--c-main-dark);
+        }
+        .btn-accent {
+            --bs-btn-color: #fff;
+            --bs-btn-bg: var(--c-accent);
+            --bs-btn-border-color: var(--c-accent);
+            --bs-btn-hover-color: #fff;
+            --bs-btn-hover-bg: var(--c-accent-dark);
+            --bs-btn-hover-border-color: var(--c-accent-dark);
+            --bs-btn-active-color: #fff;
+            --bs-btn-active-bg: var(--c-accent-dark);
+            --bs-btn-active-border-color: var(--c-accent-dark);
+        }
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">DS • Bootstrap 5</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPortifolio" aria-controls="menuPortifolio" aria-expanded="false" aria-label="Alternar navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menuPortifolio">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="desafio01.html">Desafio 01</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="desafio02.html">Desafio 02</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="desafio03.html">Desafio 03</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="desafio04.html">Desafio 04</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="desafio05.html">Desafio 05</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow-sm p-4">
+                    <h3 class="mb-4 text-brand">Cadastro de Atendimento</h3>
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label class="form-label">Nome do Tutor</label>
+                                <input type="text" class="form-control" placeholder="Ana Paula" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label">Nome do Pet</label>
+                                <input type="text" class="form-control" placeholder="Thor" required>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label">Telefone / WhatsApp</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">+55</span>
+                                    <input type="tel" class="form-control" placeholder="41999999999" required>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label class="form-label">Tipo de Serviço</label>
+                                <select class="form-select" required>
+                                    <option value="" selected>Escolha uma opção ...</option>
+                                    <option value="1">Banho</option>
+                                    <option value="2">Tosa</option>
+                                    <option value="3">Banho e tosa</option>
+                                    <option value="4">Consulta veterinária</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label">Valor Estimado</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">R$</span>
+                                    <input type="number" class="form-control" placeholder="80.00" min="0" step="0.01">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label">Observações</label>
+                                <textarea class="form-control" rows="4" placeholder="Raça, porte, alergias ou qualquer cuidado especial"></textarea>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input type="checkbox" id="ciencia" class="form-check-input" required>
+                                    <label for="ciencia" class="form-check-label">
+                                        Declaro ciência dos horários e das condições do atendimento
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-4">
+                                <button class="btn btn-brand w-100" type="submit">Registrar Atendimento</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

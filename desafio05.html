@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 05 - Painel de Controle Operacional</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <style>
+        :root {
+            --c-main: #5a3825;
+            --c-main-dark: #442918;
+            --c-accent: #d9778a;
+            --c-accent-dark: #bd5f72;
+        }
+        body { background-color: #faf3ee; }
+        .text-brand { color: var(--c-main) !important; }
+        .text-accent { color: var(--c-accent) !important; }
+        .border-brand { border-color: var(--c-accent) !important; }
+        .bg-brand { background-color: var(--c-main) !important; color: #fff; }
+        .btn-brand {
+            --bs-btn-color: #fff;
+            --bs-btn-bg: var(--c-main);
+            --bs-btn-border-color: var(--c-main);
+            --bs-btn-hover-color: #fff;
+            --bs-btn-hover-bg: var(--c-main-dark);
+            --bs-btn-hover-border-color: var(--c-main-dark);
+            --bs-btn-active-color: #fff;
+            --bs-btn-active-bg: var(--c-main-dark);
+            --bs-btn-active-border-color: var(--c-main-dark);
+        }
+        .btn-outline-brand {
+            --bs-btn-color: var(--c-main);
+            --bs-btn-border-color: var(--c-main);
+            --bs-btn-hover-color: #fff;
+            --bs-btn-hover-bg: var(--c-main);
+            --bs-btn-hover-border-color: var(--c-main);
+            --bs-btn-active-color: #fff;
+            --bs-btn-active-bg: var(--c-main-dark);
+            --bs-btn-active-border-color: var(--c-main-dark);
+        }
+        .btn-accent {
+            --bs-btn-color: #fff;
+            --bs-btn-bg: var(--c-accent);
+            --bs-btn-border-color: var(--c-accent);
+            --bs-btn-hover-color: #fff;
+            --bs-btn-hover-bg: var(--c-accent-dark);
+            --bs-btn-hover-border-color: var(--c-accent-dark);
+            --bs-btn-active-color: #fff;
+            --bs-btn-active-bg: var(--c-accent-dark);
+            --bs-btn-active-border-color: var(--c-accent-dark);
+        }
+        .table-brand {
+            --bs-table-bg: var(--c-main);
+            --bs-table-color: #fff;
+            --bs-table-border-color: #6f4a35;
+        }
+        .alert-brand {
+            --bs-alert-color: #5a3825;
+            --bs-alert-bg: #f8e4e8;
+            --bs-alert-border-color: #ecc3cb;
+        }
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">DS • Bootstrap 5</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPortifolio" aria-controls="menuPortifolio" aria-expanded="false" aria-label="Alternar navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menuPortifolio">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="desafio01.html">Desafio 01</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="desafio02.html">Desafio 02</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="desafio03.html">Desafio 03</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="desafio04.html">Desafio 04</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="desafio05.html">Desafio 05</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <div class="container my-5">
+        <div class="alert alert-brand alert-dismissible fade show" role="alert">
+            <strong>Atenção!</strong> Há encomendas pendentes aguardando o início da produção.
+            <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-brand">Controle de Encomendas</h2>
+            <button class="btn btn-brand" data-bs-toggle="modal" data-bs-target="#modalNovoPedido">
+                + Nova Encomenda
+            </button>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-brand">
+                        <tr>
+                            <th>Pedido</th>
+                            <th>Cliente</th>
+                            <th>Produto</th>
+                            <th>Entrega</th>
+                            <th>Status</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaPedidos">
+                        <tr>
+                            <td>#1001</td>
+                            <td>Mariana Costa</td>
+                            <td>Bolo de aniversário 2 kg</td>
+                            <td>28/11/2026</td>
+                            <td><span class="badge bg-brand">Em Produção</span></td>
+                            <td><button class="btn btn-sm btn-outline-brand">Ver</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>#1002</td>
+                            <td>Roberto Lima</td>
+                            <td>Caixa com 50 brigadeiros</td>
+                            <td>29/11/2026</td>
+                            <td><span class="badge bg-warning text-dark">Pendente</span></td>
+                            <td><button class="btn btn-sm btn-outline-brand">Ver</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>#1003</td>
+                            <td>Escola Pequeno Aprendiz</td>
+                            <td>Bolo de 4 kg para evento</td>
+                            <td>30/11/2026</td>
+                            <td><span class="badge bg-warning text-dark">Pendente</span></td>
+                            <td><button class="btn btn-sm btn-outline-brand">Ver</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>#1004</td>
+                            <td>Carla Mendes</td>
+                            <td>Torta holandesa</td>
+                            <td>26/11/2026</td>
+                            <td><span class="badge bg-success">Entregue</span></td>
+                            <td><button class="btn btn-sm btn-outline-brand">Ver</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>#1005</td>
+                            <td>Fernanda Alves</td>
+                            <td>Cento de salgados</td>
+                            <td>27/11/2026</td>
+                            <td><span class="badge bg-brand">Em Produção</span></td>
+                            <td><button class="btn btn-sm btn-outline-brand">Ver</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>#1006</td>
+                            <td>Paulo Henrique</td>
+                            <td>Mini bolos decorados (12 un.)</td>
+                            <td>25/11/2026</td>
+                            <td><span class="badge bg-danger">Cancelado</span></td>
+                            <td><button class="btn btn-sm btn-outline-brand">Ver</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalNovoPedido" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nova Encomenda</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="formPedido">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label" for="cliente">Cliente</label>
+                            <input type="text" id="cliente" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="produto">Produto</label>
+                            <input type="text" id="produto" class="form-control" required>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label class="form-label" for="entrega">Data de entrega</label>
+                                <input type="date" id="entrega" class="form-control" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label" for="status">Status</label>
+                                <select id="status" class="form-select">
+                                    <option>Pendente</option>
+                                    <option>Em Produção</option>
+                                    <option>Entregue</option>
+                                    <option>Cancelado</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-brand" type="submit">Cadastrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const mapaStatus = {
+            "Pendente": "bg-warning text-dark",
+            "Em Produção": "bg-brand",
+            "Entregue": "bg-success",
+            "Cancelado": "bg-danger"
+        };
+
+        document.getElementById("formPedido").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const tabela = document.getElementById("tabelaPedidos");
+            const partes = document.getElementById("entrega").value.split("-");
+            const dataEntrega = partes[2] + "/" + partes[1] + "/" + partes[0];
+            const status = document.getElementById("status").value;
+
+            const linha = document.createElement("tr");
+            const colunas = [
+                "#" + (1001 + tabela.rows.length),
+                document.getElementById("cliente").value,
+                document.getElementById("produto").value,
+                dataEntrega
+            ];
+
+            colunas.forEach(function (texto) {
+                const td = document.createElement("td");
+                td.textContent = texto;
+                linha.appendChild(td);
+            });
+
+            const tdStatus = document.createElement("td");
+            const badge = document.createElement("span");
+            badge.className = "badge " + mapaStatus[status];
+            badge.textContent = status;
+            tdStatus.appendChild(badge);
+            linha.appendChild(tdStatus);
+
+            const tdAcao = document.createElement("td");
+            tdAcao.innerHTML = '<button class="btn btn-sm btn-outline-brand">Ver</button>';
+            linha.appendChild(tdAcao);
+
+            tabela.appendChild(linha);
+
+            this.reset();
+            bootstrap.Modal.getInstance(document.getElementById("modalNovoPedido")).hide();
+        });
+    </script>
+</body>
+</html>
